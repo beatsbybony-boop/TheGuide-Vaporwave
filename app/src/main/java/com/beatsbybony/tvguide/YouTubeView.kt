@@ -134,7 +134,9 @@ var LISTS = '__LIST__'.split(',');
 // Everything except a single v:VIDEO goes through the ID-list path (read the playlists, shuffle,
 // play the list): it plays smoothly on the Fire Stick Lite, unlike a native playlist.
 // Always read playlist video IDs and shuffle them ourselves, even for a single playlist.
-var combine = !isVid(LISTS[0]);
+// A single playlist is shuffled by the IFrame API itself. Multiple sources are
+// collected into one list and shuffled locally.
+var combine = LISTS.length > 1;
 if (LISTS.length > 1) shuffle(LISTS);
 var collecting = false;
 var collected = [];
@@ -214,12 +216,20 @@ function onYouTubeIframeAPIReady() {
           collectNext();
           return;
         }
-        try {
-          e.target.setShuffle(true);
-          var n = e.target.getPlaylist().length;
-          e.target.playVideoAt(Math.floor(Math.random() * n));
-        } catch (x) {}
-        e.target.playVideo();
+        // Let YouTube randomize the playlist order, then choose a random entry
+        // as the starting point. Delay until the playlist metadata is available.
+        (function shuffleAndStart(attempt) {
+          try {
+            e.target.setShuffle(true);
+            var list = e.target.getPlaylist() || [];
+            if (list.length > 0) {
+              e.target.playVideoAt(Math.floor(Math.random() * list.length));
+              e.target.playVideo();
+              return;
+            }
+          } catch (x) {}
+          if (attempt < 10) setTimeout(function () { shuffleAndStart(attempt + 1); }, 500);
+        })(0);
       },
       onStateChange: function (e) {
         if (collecting && e.data === 5) {
