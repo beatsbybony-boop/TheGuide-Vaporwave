@@ -133,7 +133,8 @@ var errs = 0;
 var LISTS = '__LIST__'.split(',');
 // Everything except a single v:VIDEO goes through the ID-list path (read the playlists, shuffle,
 // play the list): it plays smoothly on the Fire Stick Lite, unlike a native playlist.
-var combine = LISTS.length > 1 || !isVid(LISTS[0]);
+// Always read playlist video IDs and shuffle them ourselves, even for a single playlist.
+var combine = !isVid(LISTS[0]);
 if (LISTS.length > 1) shuffle(LISTS);
 var collecting = false;
 var collected = [];
