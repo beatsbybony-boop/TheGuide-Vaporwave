@@ -231,7 +231,8 @@ class GuideView(context: Context) : View(context) {
                 ph * 0.14f, Color.WHITE, pw * 0.45f, Paint.Align.RIGHT
             )
         }
-        drawLabel(c, dateFmt.format(d).uppercase(Locale.US), px0, margin + ph * 0.36f, ph * 0.11f, cLight, pw)
+        drawLabel(c, dateFmt.format(d).uppercase(Locale.US), px0, margin + ph * 0.36f, ph * 0.11f, cLight, pw * 0.48f)
+        drawLabel(c, "ON AIR  //  RETRO CABLE", px1, margin + ph * 0.36f, ph * 0.10f, cBorder, pw * 0.48f, Paint.Align.RIGHT)
 
         stroke.color = cPink
         stroke.strokeWidth = 3f
@@ -269,6 +270,7 @@ class GuideView(context: Context) : View(context) {
         fill.color = cHeader
         c.drawRect(0f, topH, w, rowsTop, fill)
         drawLabel(c, "THE GUIDE", 16f, topH + headerH / 2f, headerH * 0.5f, cPink, labelW - 24f)
+        drawLabel(c, "VAPORWAVE TV  //  198X", labelW - 18f, topH + headerH / 2f, headerH * 0.22f, cBorder, w - labelW - 24f, Paint.Align.RIGHT)
         stroke.color = cPink
         stroke.strokeWidth = 3f
         c.drawLine(0f, rowsTop, w, rowsTop, stroke)
