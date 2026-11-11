@@ -131,11 +131,8 @@ class YouTubeView(context: Context) : WebView(context) {
 var player;
 var errs = 0;
 var LISTS = '__LIST__'.split(',');
-// Everything except a single v:VIDEO goes through the ID-list path (read the playlists, shuffle,
-// play the list): it plays smoothly on the Fire Stick Lite, unlike a native playlist.
-// Always read playlist video IDs and shuffle them ourselves, even for a single playlist.
-// A single playlist is shuffled by the IFrame API itself. Multiple sources are
-// collected into one list and shuffled locally.
+// Multiple sources are collected into one list and shuffled locally.
+// A single playlist or channel uploads feed is shuffled by the IFrame API.
 var combine = LISTS.length > 1;
 if (LISTS.length > 1) shuffle(LISTS);
 var collecting = false;
@@ -149,6 +146,8 @@ document.head.appendChild(tag);
 
 // An entry written v:VIDEOID is a single video; anything else is a playlist ID.
 function isVid(s) { return s.indexOf('v:') === 0; }
+// u:CHANNEL_ID means load that channel's uploads using YouTube's user_uploads feed.
+function isUploads(s) { return s.indexOf('u:') === 0; }
 
 function shuffle(a) {
   for (var i = a.length - 1; i > 0; i--) {
@@ -198,6 +197,10 @@ function onYouTubeIframeAPIReady() {
   if (!combine) {
     if (isVid(LISTS[0])) {
       vars.videoId = LISTS[0].substring(2);
+    } else if (isUploads(LISTS[0])) {
+      vars.listType = 'user_uploads';
+      vars.list = LISTS[0].substring(2);
+      vars.loop = 1;
     } else {
       vars.listType = 'playlist';
       vars.list = LISTS[0];
