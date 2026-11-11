@@ -468,7 +468,7 @@
     "name": "DIRTY MO",
     "youtube": [
       {
-        "id": "u:UCB2r6UX0EJn-i1cgMVqbirg",
+        "id": "PLFUhDMhE1U5RhIwCBO44nvcZDB4747uOC",
         "title": "DALE JR'S DIRTY MO MEDIA"
       }
     ]
@@ -527,9 +527,16 @@
   },
   {
     "number": 52,
-    "name": "NASCAR ARCHIVE",
+    "name": "NASCAR REGIONAL",
     "queries": [
-      "(nascar OR \"stock car\" OR \"auto racing\") AND (race OR speedway)"
+      "title:(nascar regional)"
+    ]
+  },
+  {
+    "number": 53,
+    "name": "FOX KIDS",
+    "queries": [
+      "title:(fox kids) AND title:(saturday morning)"
     ]
   }
 ]
