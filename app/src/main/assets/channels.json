@@ -471,9 +471,6 @@
         "id": "UUB2r6UX0EJn-i1cgMVqbirg",
         "title": "DALE JR'S DIRTY MO MEDIA"
       }
-    ],
-    "queries": [
-      "(nascar OR \"stock car\") AND race"
     ]
   },
   {
@@ -526,6 +523,13 @@
     ],
     "queries": [
       "collection:classic_cartoons"
+    ]
+  },
+  {
+    "number": 52,
+    "name": "NASCAR ARCHIVE",
+    "queries": [
+      "(nascar OR \"stock car\" OR \"auto racing\") AND (race OR speedway)"
     ]
   }
 ]
