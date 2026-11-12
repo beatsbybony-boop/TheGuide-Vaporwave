@@ -258,11 +258,14 @@ function onYouTubeIframeAPIReady() {
       onError: function (e) {
         if (collecting) { collectNext(); return; }
         errs++;
-        // 2 = bad request, 100 = playlist gone, 153 = player identity problem: no point skipping ahead
-        if (errs > 4 || e.data === 2 || e.data === 100 || e.data === 153) {
+        // 153 means the embedded player has no valid client identity; the whole player is blocked.
+        // Errors 2 and 100 can apply to one entry in a mixed list of individual video IDs,
+        // so skip that entry just like an embedding restriction instead of killing the channel.
+        if (errs > 4 || e.data === 153) {
           Android.failed(e.data);
         } else {
-          // 101 / 150 / 152 = this one video can't be embedded: try the next one
+          // 2 = invalid video request; 100 = unavailable/private video;
+          // 101 / 150 / 152 = embedding blocked. Try the next movie for all of them.
           try { player.nextVideo(); } catch (x) { Android.failed(e.data); }
         }
       }
