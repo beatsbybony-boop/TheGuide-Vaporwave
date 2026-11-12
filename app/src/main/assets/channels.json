@@ -538,5 +538,67 @@
     "queries": [
       "title:(fox kids) AND title:(saturday morning)"
     ]
+  },
+  {
+    "number": 54,
+    "name": "80S MOVIE MIX",
+    "combine": true,
+    "youtube": [
+      {
+        "id": "v:a72W8hP9QNE",
+        "title": "BILL & TED'S EXCELLENT ADVENTURE (1989)"
+      },
+      {
+        "id": "v:pJTmThcDOcg",
+        "title": "MISSISSIPPI BURNING (1988)"
+      },
+      {
+        "id": "v:bVXxNmTFu1w",
+        "title": "FRIDAY THE 13TH PART 2 (1981)"
+      },
+      {
+        "id": "v:T2El5f9jqAg",
+        "title": "RADIO DAYS (1987)"
+      },
+      {
+        "id": "v:PT02T3kXDJY",
+        "title": "CLUE (1985)"
+      },
+      {
+        "id": "v:mvzWeN62XpA",
+        "title": "THE WRAITH (1986)"
+      },
+      {
+        "id": "v:05ReFYqxIsk",
+        "title": "OVER THE TOP (1987)"
+      },
+      {
+        "id": "v:Cv62MMIYcLw",
+        "title": "ALL DOGS GO TO HEAVEN (1989)"
+      }
+    ]
+  },
+  {
+    "number": 55,
+    "name": "90S MOVIE MIX",
+    "combine": true,
+    "youtube": [
+      {
+        "id": "v:7oXtTHTVAs8",
+        "title": "POINT BREAK (1991)"
+      },
+      {
+        "id": "v:TMUaY609iYc",
+        "title": "HAPPY GILMORE (1996)"
+      },
+      {
+        "id": "v:Oqafbyf_L3w",
+        "title": "CASPER (1995)"
+      },
+      {
+        "id": "v:TDnS4d0j-Xc",
+        "title": "TIMECOP (1994)"
+      }
+    ]
   }
 ]
